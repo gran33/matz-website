@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noa Matz | Startup Psychology</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #484454;
+      --ink-mid: #6b6778;
+      --ink-lt:  #9994a8;
+      --green:   #5C8B78;
+      --mint:    #DAF1E5;
+      --mint-lt: #edf8f2;
+      --peach:   #F9C29F;
+      --peach-lt:#F8DEC8;
+      --cream:   #FFF5EC;
+      --white:   #ffffff;
+      --radius-pill: 999px;
+      --radius-card: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(42,39,55,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      display: inline-flex; flex-direction: column; align-items: center;
+      gap: 3px; text-decoration: none;
+    }
+    .logo-box {
+      border: 2px solid rgba(255,255,255,0.7);
+      border-radius: 10px;
+      padding: 4px 12px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex; gap: 36px; align-items: center;
+    }
+    nav ul a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: #ffffff; }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 26px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: #383344;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(72,68,84,0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 60px 80px;
+      position: relative;
+      overflow: hidden;
+      background: #2a2737;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+    }
+    .hero-blob-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, #3a3650, #2e2b3e);
+      top: -150px; right: -150px;
+      opacity: 0.8;
+    }
+    .hero-blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #3d5c50, #2e4a40);
+      bottom: -100px; left: 10%;
+      opacity: 0.6;
+    }
+    .hero-blob-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #5C8B78, #3d5c50);
+      top: 20%; left: -80px;
+      opacity: 0.25;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 680px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: #83cfb1;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 2px;
+      background: #83cfb1;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #83cfb1, #DAF1E5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex; gap: 14px; flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative; z-index: 1;
+      width: 438px; flex-shrink: 0;
+      margin-left: auto;
+    }
+    .hero-photo {
+      width: 100%;
+      border-radius: 28px;
+      display: block;
+      box-shadow: 0 20px 60px rgba(72,68,84,0.14);
+      object-fit: cover;
+    }
+
+    /* ── QUOTES STRIP ── */
+    .quotes-strip {
+      background: var(--white);
+      padding: 60px 60px;
+    }
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .quote-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 28px 26px 24px;
+    }
+    .quote-card p {
+      font-size: 15px; line-height: 1.65;
+      color: var(--ink); margin: 0;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .quote-card span {
+      display: block; margin-top: 14px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* ── STAGE PHOTO ── */
+    .stage-photo-wrap {
+      width: 100%;
+    }
+    .stage-photo-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 60px; }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+    .section-heading {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--ink-mid);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--white);
+    }
+    .services-header {
+      margin-bottom: 40px;
+    }
+    .services-bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .service-card {
+      background: var(--cream);
+      border-radius: 28px;
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .service-card:nth-child(1),
+    .service-card:nth-child(4) { grid-column: span 2; }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(72,68,84,0.1);
+    }
+    .service-num-sm {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 32px;
+    }
+    .service-card h3 {
+      font-size: 24px; font-weight: 800;
+      letter-spacing: -0.5px; line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .service-card p {
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 0.55fr 1fr;
+      gap: 80px;
+      align-items: center;
+      background: var(--cream);
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      border-radius: 40px;
+      overflow: hidden;
+      aspect-ratio: 0.85;
+      max-height: 480px;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 20px 28px;
+      font-size: 13px; font-weight: 600;
+      line-height: 1.5;
+      max-width: 220px;
+      box-shadow: 0 12px 40px rgba(72,68,84,0.2);
+    }
+    .about-badge span {
+      display: block;
+      font-size: 28px; font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--mint);
+      margin-bottom: 4px;
+    }
+
+    .about-content .section-heading { margin-bottom: 10px; }
+    .about-content .section-sub { margin-bottom: 28px; }
+    .about-content p {
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .about-content strong { color: var(--ink); font-weight: 600; }
+
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin: 32px 0;
+    }
+    .tag {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 500;
+      background: var(--mint);
+      color: var(--green);
+    }
+
+    /* ── MEDIA (YOUTUBE + SPOTIFY) ── */
+    .media {
+      background: var(--white);
+      padding: 100px 60px;
+    }
+    .media-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: end;
+      margin-bottom: 60px;
+    }
+    .media-tabs {
+      display: flex; gap: 12px;
+      margin-bottom: 48px;
+    }
+    .media-tab {
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid rgba(72,68,84,0.15);
+      background: transparent;
+      color: var(--ink-mid);
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .media-tab.active {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+    }
+    .media-tab:hover:not(.active) {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .media-panel { display: none; }
+    .media-panel.active { display: block; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid rgba(72,68,84,0.1);
+    }
+    .pub-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(72,68,84,0.1);
+      text-decoration: none;
+      gap: 24px;
+      transition: background 0.15s;
+    }
+    .pub-item:hover .pub-title { color: var(--green); }
+    .pub-item:hover .pub-arrow { color: var(--green); transform: translate(2px, -2px); }
+    .pub-item-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pub-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: color 0.2s;
+      line-height: 1.3;
+    }
+    .pub-outlet {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .pub-arrow {
+      font-size: 22px;
+      color: var(--ink-lt);
+      flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .video-embed {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--cream);
+    }
+    .video-embed iframe {
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-facade {
+      width: 100%; height: 100%;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .video-facade img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .video-facade:hover img { opacity: 0.7; }
+    .video-facade .play-btn {
+      position: absolute;
+      width: 68px; height: 48px;
+      background: #ff0000;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s;
+    }
+    .video-facade:hover .play-btn { transform: scale(1.1); }
+    .video-facade .play-btn::after {
+      content: '';
+      border-left: 20px solid #fff;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    }
+
+    .spotify-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      max-width: 700px;
+    }
+    .spotify-wrap iframe {
+      border: none;
+      display: block;
+    }
+
+    /* ── COMMITMENT STRIP ── */
+    .commitment {
+      background: #2a2737;
+      color: var(--white);
+      padding: 80px 60px;
+      text-align: center;
+    }
+    .commitment h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .commitment h2 em {
+      font-style: normal;
+      color: var(--mint);
+    }
+    .commitment p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .commitment .btn-mint {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      background: var(--mint);
+      color: var(--ink);
+      font-size: 15px; font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .commitment .btn-mint:hover {
+      background: #b6e8d1;
+      transform: translateY(-1px);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info .section-heading { margin-bottom: 16px; }
+    .contact-info .section-sub { margin-bottom: 44px; }
+
+    .contact-links {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      text-decoration: none; color: var(--ink);
+      font-size: 15px; font-weight: 500;
+      transition: color .2s;
+    }
+    .contact-link:hover { color: var(--green); }
+    .contact-link-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--white);
+      border: 1.5px solid rgba(72,68,84,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background .2s, border-color .2s;
+    }
+    .contact-link:hover .contact-link-icon {
+      background: var(--mint);
+      border-color: var(--mint);
+    }
+
+    .contact-form {
+      background: var(--white);
+      border-radius: 32px;
+      padding: 48px;
+      box-shadow: 0 8px 40px rgba(72,68,84,0.06);
+    }
+    .contact-form h3 {
+      font-size: 22px; font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 32px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(72,68,84,0.15);
+      background: var(--cream);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s, background .2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--green);
+      background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23484454' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      padding-right: 44px;
+    }
+    .form-submit { width: 100%; padding: 16px; font-size: 15px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      padding: 40px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(72,68,84,0.08);
+    }
+    footer p { font-size: 13px; color: var(--ink-lt); }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a {
+      font-size: 13px; color: var(--ink-lt);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-right a:hover { color: var(--ink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 16px 24px; }
+      nav ul { display: none; }
+      section, .media, .commitment { padding: 70px 24px; }
+      .hero { padding: 100px 24px 60px; flex-direction: column; align-items: flex-start; }
+      .hero-visual { width: 100%; margin-left: 0; margin-top: 32px; }
+      .quotes-strip { padding: 48px 24px; }
+      .quotes-grid { grid-template-columns: 1fr; }
+      .services-bento { grid-template-columns: 1fr; }
+      .service-card:nth-child(1),
+      .service-card:nth-child(4) { grid-column: span 1; }
+      .about { grid-template-columns: 1fr; }
+      .about-img-wrap { max-height: 384px; }
+      .media-header { grid-template-columns: 1fr; gap: 20px; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; gap: 48px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-box">matz.</span>
+    <span class="logo-sub">Startup Psychology</span>
+  </a>
+  <ul>
+    <li><a href="#services">What I Do</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:noa@matz-startups.com" class="btn btn-primary">Work with me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Founder-Centered Strategic & Psychological Advisory</div>
+    <h1>Strategic Clarity for<br><em>High-Growth</em><br>Founders.</h1>
+    <p>Startup Psychologist, speaker, and professor.</p>
+    <p>The moments that define a company — fundraising, scaling, hiring, navigating uncertainty — aren't won by strategy alone. They're won by founders who think clearly and hold together when it counts. I help you become one of them.</p>
+  </div>
+
+  <div class="hero-visual">
+    <img class="hero-photo" src="headshot.jpg" alt="Noa Matz">
+  </div>
+</section>
+
+<!-- QUOTES STRIP -->
+<div class="quotes-strip">
+  <div class="quotes-grid">
+    <div class="quote-card">
+      <p>"If Noa wasn't around, things wouldn't have been as successful for the company."</p>
+      <span>— CEO</span>
+    </div>
+    <div class="quote-card">
+      <p>"Noa is business-focused. She uses her understanding of people and dynamics to drive real results."</p>
+      <span>— CEO</span>
+    </div>
+    <div class="quote-card">
+      <p>"She helps you see reality more clearly — and understand how you're perceived by everyone who matters."</p>
+      <span>— CEO</span>
+    </div>
+  </div>
+</div>
+
+<!-- STAGE PHOTO -->
+<div class="stage-photo-wrap">
+  <img src="stage-photo.jpg" alt="Noa Matz on stage">
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What I do</div>
+      <h2 class="section-heading">The Work That Moves the Needle</h2>
+    </div>
+  </div>
+
+  <div class="services-bento">
+    <div class="service-card">
+      <div class="service-num-sm">01</div>
+      <h3>Alignment at the Top</h3>
+      <p>Real agreement — not surface consensus — is what turns strategy into execution. I help leadership teams get there and stay there.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num-sm">02</div>
+      <h3>Business Clarity Under Pressure</h3>
+      <p>Stress reveals and amplifies existing traits. I help founders understand how they operate at their best — and how to stay there when the stakes are highest.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num-sm">03</div>
+      <h3>Speed with Direction</h3>
+      <p>Fast execution is only valuable when it's pointed at the right things. I help teams think clearly before they move fast — so speed becomes an asset, not a liability.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num-sm">04</div>
+      <h3>The Conversations That Change Everything</h3>
+      <p>The most important decisions often live in the conversations that haven't happened yet. I help make them possible — with honesty, clarity, and the trust to act on what's said.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-wrap">
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQGW2HJQbkPyVg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707379112062?e=1778112000&v=beta&t=iPLQprdDRtLAtkGZt-SdEYwpKurYqV2YfrEjhpsIijU" alt="Noa Matz">
+    </div>
+
+  </div>
+
+  <div class="about-content">
+    <div class="section-label">Why Noa Matz</div>
+    <h2 class="section-heading">Psychology meets venture strategy</h2>
+    <p>I bring a combination that's rare in this space: a background as Partner at a deep-tech early stage VC, and a psychology specialisation in startups and high-performance environments.</p>
+    <p>I understand both how companies are evaluated from the outside, and what actually happens inside the room when decisions are made. That combination lets me identify what others miss — and translate it into better decisions, faster alignment, and stronger execution.</p>
+    <p>Author of <a href="https://www.thevcplaybook.com/psychological-playbook" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;font-weight:700;">The Psychological Playbook for VCs and Startups</a>. University professor. Working with founders at every stage of the journey.</p>
+
+
+    <a href="mailto:noa@matz-startups.com" class="btn btn-primary">Work with me</a>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section class="media" id="media">
+  <div class="media-header">
+    <div>
+      <div class="section-label">Watch &amp; Listen</div>
+      <h2 class="section-heading">Noa in conversation</h2>
+    </div>
+    <p class="section-sub">Talks, interviews, and podcast episodes on startup psychology, founder mental health, and building high-performance teams.</p>
+  </div>
+
+  <div class="media-tabs">
+    <button class="media-tab active" onclick="switchTab(this, 'videos')">▶ Videos</button>
+    <button class="media-tab" onclick="switchTab(this, 'podcast')">🎧 Podcast</button>
+    <button class="media-tab" onclick="switchTab(this, 'publications')">✍️ Publications</button>
+  </div>
+
+  <!-- VIDEOS PANEL -->
+  <!-- TO ADD: paste your YouTube video URLs and I'll extract the IDs -->
+  <div class="media-panel active" id="panel-videos">
+    <div class="videos-grid">
+      <!-- VIDEO 1 -->
+      <div class="video-embed">
+        <div class="video-facade" onclick="this.outerHTML='<iframe src=\'https://www.youtube.com/embed/3O14nW867iY?autoplay=1\' title=\'Noa Matz on Startup Psychology\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'width:100%;height:100%;border:none;display:block;\'></iframe>'">
+          <img src="Screenshot 2026-04-17 at 14.18.58.png" alt="Noa Matz">
+          <div class="play-btn"></div>
+        </div>
+      </div>
+      <!-- VIDEO 2 -->
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/GBzfXNCZ2ag"
+                title="Startup Psychologist, VC or Both? With Noa Matz"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+      <!-- VIDEO 3 -->
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/sH8qT-2EeNg"
+                title="Startup Psychologist Speaks About Identifying Stress Behaviours"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- PODCAST / SPOTIFY PANEL -->
+  <!-- TO ADD: paste your Spotify playlist URL and I'll embed it -->
+  <div class="media-panel" id="panel-podcast">
+    <div class="spotify-wrap">
+      <iframe src="https://open.spotify.com/embed/playlist/5t5rKFAwRWsj3EY9b8in76?utm_source=generator&theme=0"
+              width="100%" height="480"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS PANEL -->
+  <div class="media-panel" id="panel-publications">
+    <div class="pub-list">
+      <a class="pub-item" href="https://www.calcalistech.com/tags/Noa_Matz" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">Founders on Sofas column</span>
+          <span class="pub-outlet">Calcalist Tech</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.thevcplaybook.com/psychological-playbook" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">The Psychological Playbook for VCs and Startups</span>
+          <span class="pub-outlet">The VC Playbook</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.jpost.com/business-and-innovation/start-ups/knowing-a-start-up-is-crucial-before-investing-688723" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">Knowing a startup is crucial before investing</span>
+          <span class="pub-outlet">Jerusalem Post</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.entrepreneur.com/leadership/investment-bias-get-rid-of-the-pesky-impediment-to-success/396113" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">Investment Bias: Get Rid of the Pesky Impediment to Success</span>
+          <span class="pub-outlet">Entrepreneur</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.entrepreneur.com/leadership/4-ways-to-motivate-your-startup-team-and-get-major-results/403631" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">4 Ways to Motivate Your Startup Team and Get Major Results</span>
+          <span class="pub-outlet">Entrepreneur</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.f2vc.com/blog-posts/finding-the-perfect-co-founder-a-practical-guide" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">Finding the Perfect Co-founder: A Practical Guide</span>
+          <span class="pub-outlet">F2VC</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://medium.com/@noa_36321/what-investors-want-a-guide-for-early-stage-startups-dc132fd21a40" target="_blank" rel="noopener">
+        <div class="pub-item-text">
+          <span class="pub-title">What Do Investors Want? A Guide for Early-Stage Startups</span>
+          <span class="pub-outlet">Medium</span>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT STRIP -->
+<div class="commitment">
+  <h2>Committed to <em>excellence</em> and<br>confidentiality.</h2>
+  <p>I am committed to the highest standards of ethics, confidentiality, and professionalism. I understand the sensitivity of the information at hand and treat it with the utmost care and discretion.</p>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-heading">Ready to lead with clarity?</h2>
+
+    <div class="contact-links">
+      <a href="mailto:noa@matz-startups.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        noa@matz-startups.com
+      </a>
+      <a href="tel:+972544678335" class="contact-link">
+        <div class="contact-link-icon">📞</div>
+        +972-544-678335
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Send a message</h3>
+    <div class="form-group">
+      <label>Your name</label>
+      <input type="text" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="you@company.com">
+    </div>
+    <div class="form-group">
+      <label>What brings you here?</label>
+      <select>
+        <option value="">Select a topic…</option>
+        <option>Leadership coaching</option>
+        <option>Investor relationships</option>
+        <option>Team dynamics</option>
+        <option>Founder mental health</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Tell me a bit about your situation…"></textarea>
+    </div>
+    <button class="btn btn-primary form-submit"
+            onclick="window.location='mailto:noa@matz-startups.com?subject=Website enquiry'">
+      Send message →
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="flex-direction:row;gap:10px;align-items:center;">
+    <span class="logo-box" style="font-size:13px;padding:3px 9px;">matz.</span>
+    <p style="font-size:12px;color:var(--ink-lt);font-style:italic;">Startup Psychology</p>
+  </a>
+  <p>© 2026 Noa Matz. All rights reserved.</p>
+  <div class="footer-right">
+    <a href="https://www.linkedin.com/in/noa-matz-182859a5/" target="_blank">LinkedIn</a>
+    <a href="mailto:noa@matz-startups.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  function switchTab(btn, panel) {
+    document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.media-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + panel).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
