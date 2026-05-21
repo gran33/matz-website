@@ -24,7 +24,7 @@
       --radius-card: 24px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -32,6 +32,7 @@
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── NAV ── */
@@ -114,7 +115,9 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex; align-items: center;
+      display: flex;
+      align-items: center;
+      gap: 60px;
       padding: 120px 60px 80px;
       position: relative;
       overflow: hidden;
@@ -151,27 +154,16 @@
 
     .hero-content {
       position: relative; z-index: 1;
-      max-width: 680px;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: #83cfb1;
-      margin-bottom: 28px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block; width: 28px; height: 2px;
-      background: #83cfb1;
+      flex: 1;
+      max-width: 620px;
     }
     .hero h1 {
-      font-size: clamp(42px, 6vw, 72px);
+      font-size: clamp(32px, 3.4vw, 48px);
       font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -2px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
       color: #ffffff;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .hero h1 em {
       font-style: normal;
@@ -180,13 +172,51 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-line-1 {
+      display: block;
+      opacity: 0;
+      animation: heroFadeUp 1.2s ease forwards;
+      animation-delay: 0.3s;
+    }
+    .hero-line-2 {
+      display: block;
+      opacity: 0;
+      animation: heroFadeUp 1.2s ease forwards;
+      animation-delay: 1.1s;
+    }
+    .hero-credential {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      margin-top: 16px;
+    }
     .hero p {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 400;
-      color: rgba(255,255,255,0.65);
-      max-width: 500px;
-      margin-bottom: 44px;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.68);
+      max-width: 100%;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .hero p strong {
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+    }
+    .hero-closer {
+      font-size: 23px;
+      font-style: italic;
+      font-weight: 600;
+      color: #83cfb1;
+      margin-top: 12px;
+      margin-bottom: 40px;
+      letter-spacing: -0.3px;
     }
     .hero-ctas {
       display: flex; gap: 14px; flex-wrap: wrap;
@@ -194,15 +224,92 @@
 
     .hero-visual {
       position: relative; z-index: 1;
-      width: 438px; flex-shrink: 0;
+      width: 460px;
+      flex-shrink: 0;
       margin-left: auto;
     }
     .hero-photo {
       width: 100%;
-      border-radius: 28px;
+      height: 560px;
+      border-radius: 24px;
       display: block;
-      box-shadow: 0 20px 60px rgba(72,68,84,0.14);
       object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+    }
+
+    /* ── LOGOS STRIP ── */
+    .logos-strip {
+      background: #2a2737;
+      padding: 36px 60px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .logos-label {
+      text-align: center;
+      margin-bottom: 28px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .logos-label-bold {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0;
+    }
+    .logos-label-sub {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0;
+      margin-top: 4px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px 56px;
+    }
+    .logo-img {
+      height: 22px;
+      max-height: 22px;
+      max-width: 120px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1) opacity(0.45);
+      transition: filter 0.2s;
+    }
+    .logo-img.logo-sm {
+      height: 16px;
+      max-height: 16px;
+    }
+    /* Per-logo size corrections */
+    .logo-emerge  { height: 14px; max-height: 14px; }
+    .logo-usvp    { height: 18px; max-height: 18px; }
+
+    .logo-bessemer { height: 30px; max-height: 30px; max-width: 150px; }
+    .logo-img:hover {
+      filter: brightness(0) invert(1) opacity(0.85);
+    }
+    .logos-row .logo-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: -0.3px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .logos-row .logo-text:hover {
+      color: rgba(255,255,255,0.85);
     }
 
     /* ── QUOTES STRIP ── */
@@ -219,12 +326,15 @@
       background: var(--cream);
       border-radius: 20px;
       padding: 28px 26px 24px;
+      display: flex;
+      flex-direction: column;
     }
     .quote-card p {
       font-size: 15px; line-height: 1.65;
       color: var(--ink); margin: 0;
       font-style: italic;
       font-weight: 700;
+      flex: 1;
     }
     .quote-card span {
       display: block; margin-top: 14px;
@@ -275,7 +385,7 @@
     }
     .services-bento {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 14px;
     }
     .service-card {
@@ -286,8 +396,6 @@
       flex-direction: column;
       transition: transform 0.22s, box-shadow 0.22s;
     }
-    .service-card:nth-child(1),
-    .service-card:nth-child(4) { grid-column: span 2; }
     .service-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 16px 48px rgba(72,68,84,0.1);
@@ -308,7 +416,9 @@
       font-size: 15px;
       color: var(--ink-mid);
       line-height: 1.75;
+      margin-bottom: 12px;
     }
+    .service-card p:last-child { margin-bottom: 0; }
 
     /* ── ABOUT ── */
     .about {
@@ -659,24 +769,74 @@
     }
     .footer-right a:hover { color: var(--ink); }
 
-    /* ── RESPONSIVE ── */
+    /* ── TABLET (701px–1024px) ── */
+    @media (min-width: 701px) and (max-width: 1024px) {
+      nav { padding: 16px 32px; }
+      .hero { padding: 100px 40px 60px; gap: 32px; }
+      .hero-content { max-width: 380px; }
+      .hero h1 { font-size: clamp(26px, 4vw, 38px); letter-spacing: -1px; margin-bottom: 24px; }
+      .hero-visual { width: 44%; padding: 40px 32px 40px 0; }
+      .hero-photo { height: 420px; }
+      .hero p { font-size: 15px; line-height: 1.7; }
+      .hero-closer { font-size: 17px; }
+      .hero-credential { font-size: 10px; letter-spacing: 1.5px; white-space: nowrap; }
+      section, .media, .commitment { padding: 80px 40px; }
+      .logos-strip { padding: 32px 40px; }
+      .quotes-strip { padding: 48px 40px; }
+      .services-bento { grid-template-columns: 1fr 1fr; }
+      .about { gap: 40px; }
+      .videos-grid { grid-template-columns: 1fr; }
+      footer { padding: 32px 40px; }
+    }
+
+    /* ── MOBILE LANDSCAPE ── */
+    @media (max-height: 520px) and (min-width: 600px) {
+      .hero {
+        padding: 72px 40px 32px;
+        flex-direction: row;
+        min-height: unset;
+        gap: 32px;
+        align-items: center;
+      }
+      .hero-content { max-width: 420px; }
+      .hero h1 { font-size: clamp(18px, 3.2vw, 28px); letter-spacing: -0.5px; margin-bottom: 14px; }
+      .hero p { font-size: 13px; margin-bottom: 10px; line-height: 1.55; }
+      .hero-closer { font-size: 14px; margin-bottom: 16px; }
+      .hero-visual { width: 36%; padding: 16px 24px 16px 0; }
+      .hero-photo { height: 260px; }
+      .hero-credential { font-size: 9px; letter-spacing: 1.2px; white-space: nowrap; }
+    }
+
+    /* ── MOBILE (≤700px) ── */
     @media (max-width: 700px) {
-      nav { padding: 16px 24px; }
+      nav { padding: 14px 20px; }
       nav ul { display: none; }
+      .hero-eyebrow { display: none; }
+      .btn-primary { padding: 10px 18px; font-size: 13px; }
       section, .media, .commitment { padding: 70px 24px; }
-      .hero { padding: 100px 24px 60px; flex-direction: column; align-items: flex-start; }
-      .hero-visual { width: 100%; margin-left: 0; margin-top: 32px; }
+      .hero { padding: 100px 24px 60px; flex-direction: column; align-items: flex-start; min-height: unset; }
+      .hero-visual { width: 100%; margin-left: 0; margin-top: 32px; padding: 0; }
+      .hero-photo { height: 420px; border-radius: 20px; }
+      .hero-credential { font-size: 9px; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .logos-strip { padding: 36px 24px; }
+      .logos-row { gap: 28px 36px; }
       .quotes-strip { padding: 48px 24px; }
       .quotes-grid { grid-template-columns: 1fr; }
       .services-bento { grid-template-columns: 1fr; }
-      .service-card:nth-child(1),
-      .service-card:nth-child(4) { grid-column: span 1; }
       .about { grid-template-columns: 1fr; }
       .about-img-wrap { max-height: 384px; }
       .media-header { grid-template-columns: 1fr; gap: 20px; }
       .videos-grid { grid-template-columns: 1fr; }
       .contact { grid-template-columns: 1fr; gap: 48px; }
       footer { flex-direction: column; gap: 16px; text-align: center; }
+      .commitment h2 { font-size: clamp(28px, 8vw, 40px); }
+    }
+
+    @media (max-width: 360px) {
+      .hero-credential { font-size: 8px; letter-spacing: 0.6px; }
+      nav { padding: 14px 16px; }
+      section, .media, .commitment { padding: 60px 16px; }
+      .hero { padding: 90px 16px 50px; }
     }
   </style>
 </head>
@@ -689,7 +849,7 @@
     <span class="logo-sub">Startup Psychology</span>
   </a>
   <ul>
-    <li><a href="#services">What I Do</a></li>
+    <li><a href="#services">When to Call Me</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#media">Media</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -706,31 +866,51 @@
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Founder-Centered Strategic & Psychological Advisory</div>
-    <h1>Strategic Clarity for<br><em>High-Growth</em><br>Founders.</h1>
-    <p>Startup Psychologist, speaker, and professor.</p>
-    <p>The moments that define a company — fundraising, scaling, hiring, navigating uncertainty — aren't won by strategy alone. They're won by founders who think clearly and hold together when it counts. I help you become one of them.</p>
+    <h1><span class="hero-line-1">Founders Are Surrounded by People.</span><br><em class="hero-line-2">Very Few Tell Them the Truth.</em></h1>
+    <p>I work with Seed to Series C founders when growth, pressure, and leadership complexity start to collide.</p>
+    <p>I map the dynamics beneath the business — the avoided conversations, distorted decisions, and founder patterns quietly shaping execution — and give founders <strong>the mirror they rarely get.</strong></p>
+    <p class="hero-closer"><strong>Not therapy. Not coaching.</strong> The hard truth, from someone who has sat on both sides of the table.</p>
   </div>
 
   <div class="hero-visual">
     <img class="hero-photo" src="headshot.jpg" alt="Noa Matz">
+    <div class="hero-credential">Startup Psychologist · Ex-VC Partner · Speaker</div>
   </div>
 </section>
+
+<!-- LOGOS STRIP -->
+<div class="logos-strip">
+  <div class="logos-label">
+    <span class="logos-label-bold">Confidentiality is non-negotiable.</span>
+    <span class="logos-label-sub">The founders I work with don't go on record<br>— their VCs do.</span>
+  </div>
+  <div class="logos-row">
+    <img class="logo-img" src="https://cdn.prod.website-files.com/670ca83cf63fc368062b2d3a/670cdf7250672565d4a60efb_logo.svg" alt="Aleph">
+    <img class="logo-img logo-emerge" src="https://emerge.ventures/wp-content/uploads/2021/06/logo.svg" alt="Emerge">
+    <img class="logo-img" src="https://team8.vc/wp-content/uploads/2025/09/company_logo.svg" alt="Team8">
+    <img class="logo-img logo-bessemer" src="https://www.bvp.com/assets/uploads/2023/08/copy-bessemer-logo.svg" alt="Bessemer">
+    <img class="logo-img" src="https://cdn.prod.website-files.com/66d894ac929236a04d136c23/66d894ac929236a04d136c81_logof2.svg" alt="F2">
+    <img class="logo-img" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Venrock_Logo.png" alt="Venrock">
+    <img class="logo-img logo-usvp" src="https://www.usvp.com/wp-content/uploads/2017/02/usvp-logo.png" alt="USVP">
+    <span class="logo-text">Google for Startups</span>
+    <span class="logo-text">Meta</span>
+  </div>
+</div>
 
 <!-- QUOTES STRIP -->
 <div class="quotes-strip">
   <div class="quotes-grid">
     <div class="quote-card">
       <p>"If Noa wasn't around, things wouldn't have been as successful for the company."</p>
-      <span>— CEO</span>
+      <span>— CEO, Series B Fintech</span>
     </div>
     <div class="quote-card">
       <p>"Noa is business-focused. She uses her understanding of people and dynamics to drive real results."</p>
-      <span>— CEO</span>
+      <span>— CEO, Series A Construction Tech</span>
     </div>
     <div class="quote-card">
       <p>"She helps you see reality more clearly — and understand how you're perceived by everyone who matters."</p>
-      <span>— CEO</span>
+      <span>— CEO, Series B Cyber</span>
     </div>
   </div>
 </div>
@@ -744,31 +924,35 @@
 <section class="services" id="services">
   <div class="services-header">
     <div>
-      <div class="section-label">What I do</div>
-      <h2 class="section-heading">The Work That Moves the Needle</h2>
+      <div class="section-label">When to Call Me</div>
+      <h2 class="section-heading">Here's when founders typically reach out</h2>
     </div>
   </div>
 
   <div class="services-bento">
     <div class="service-card">
       <div class="service-num-sm">01</div>
-      <h3>Alignment at the Top</h3>
-      <p>Real agreement — not surface consensus — is what turns strategy into execution. I help leadership teams get there and stay there.</p>
+      <h3>"We're Not Really Aligned — We're Just Still Moving"</h3>
+      <p>Founder misalignment rarely looks like open conflict. More often, it shows up as different assumptions, unspoken tension, vague ownership, or decisions that keep getting revisited without ever being fully resolved.</p>
+      <p>I help founders surface what is actually unresolved — before it turns into politics, resentment, or organizational drag.</p>
     </div>
     <div class="service-card">
       <div class="service-num-sm">02</div>
-      <h3>Business Clarity Under Pressure</h3>
-      <p>Stress reveals and amplifies existing traits. I help founders understand how they operate at their best — and how to stay there when the stakes are highest.</p>
+      <h3>"The Company Is Moving Fast — But the System Is Starting to Break"</h3>
+      <p>At a certain stage, speed stops being a competitive advantage and starts exposing the limits of the organization. Priorities multiply, ownership blurs, decisions get stuck between teams, and the company becomes too dependent on founder intervention.</p>
+      <p>I help leadership teams build the clarity, cadence, and decision structure needed to keep moving fast without creating chaos.</p>
     </div>
     <div class="service-card">
       <div class="service-num-sm">03</div>
-      <h3>Speed with Direction</h3>
-      <p>Fast execution is only valuable when it's pointed at the right things. I help teams think clearly before they move fast — so speed becomes an asset, not a liability.</p>
+      <h3>"There's Huge Potential Here — So Why Are We Still Stuck?"</h3>
+      <p>Some companies have the funding, the talent, the product, and the market opportunity — but still cannot convert potential into momentum. The problem is rarely one thing; it is usually a system of hidden blockers: unclear strategy, weak ownership, leadership avoidance, misaligned incentives, or execution that keeps circling the same issues.</p>
+      <p>I help founders identify what is actually holding the company back — and turn potential into focused movement.</p>
     </div>
     <div class="service-card">
       <div class="service-num-sm">04</div>
-      <h3>The Conversations That Change Everything</h3>
-      <p>The most important decisions often live in the conversations that haven't happened yet. I help make them possible — with honesty, clarity, and the trust to act on what's said.</p>
+      <h3>"There's a Conversation I've Been Avoiding — and It's Starting to Cost Us"</h3>
+      <p>The conversations founders avoid rarely disappear. They usually become slower execution, unclear expectations, declining trust, or expensive people decisions delayed for too long.</p>
+      <p>I help founders have the conversations that unlock movement — with co-founders, executives, board members, or themselves — before the cost compounds.</p>
     </div>
   </div>
 </section>
@@ -777,7 +961,7 @@
 <section class="about" id="about">
   <div class="about-visual">
     <div class="about-img-wrap">
-      <img src="https://media.licdn.com/dms/image/v2/D4D03AQGW2HJQbkPyVg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707379112062?e=1778112000&v=beta&t=iPLQprdDRtLAtkGZt-SdEYwpKurYqV2YfrEjhpsIijU" alt="Noa Matz">
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQGW2HJQbkPyVg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707379112062?e=1779926400&v=beta&t=i7XR-jcVKjR-cmksNzE0Odm9HYFw4UtzDCgdn0bIzZ8" alt="Noa Matz">
     </div>
 
   </div>
@@ -817,7 +1001,7 @@
       <!-- VIDEO 1 -->
       <div class="video-embed">
         <div class="video-facade" onclick="this.outerHTML='<iframe src=\'https://www.youtube.com/embed/3O14nW867iY?autoplay=1\' title=\'Noa Matz on Startup Psychology\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'width:100%;height:100%;border:none;display:block;\'></iframe>'">
-          <img src="Screenshot 2026-04-17 at 14.18.58.png" alt="Noa Matz">
+          <img src="video-thumbnail.png" alt="Noa Matz">
           <div class="play-btn"></div>
         </div>
       </div>
@@ -915,7 +1099,7 @@
 <section class="contact" id="contact">
   <div class="contact-info">
     <div class="section-label">Get in touch</div>
-    <h2 class="section-heading">Ready to lead with clarity?</h2>
+    <h2 class="section-heading">The work starts with one honest conversation.</h2>
 
     <div class="contact-links">
       <a href="mailto:noa@matz-startups.com" class="contact-link">
