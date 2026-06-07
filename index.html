@@ -277,7 +277,8 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 40px 56px;
+      gap: 32px 56px;
+      margin-bottom: 20px;
     }
     .logo-img {
       height: 22px;
@@ -385,42 +386,60 @@
     .services-header {
       margin-bottom: 40px;
     }
+    .services-header .section-label { font-size: 14px; }
+    .services-header .section-heading { font-size: clamp(21.6px, 2.7vw, 32.4px); }
     .services-bento {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .service-card {
-      background: var(--cream);
-      border-radius: 28px;
-      padding: 44px 40px;
       display: flex;
       flex-direction: column;
-      transition: transform 0.22s, box-shadow 0.22s;
     }
-    .service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(72,68,84,0.1);
+    .service-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      column-gap: 56px;
+      padding: 56px 0;
+      border-bottom: 1px solid rgba(72,68,84,0.1);
+      background: none;
+      border-radius: 0;
+      align-items: start;
     }
+    .service-card:last-child { border-bottom: none; }
     .service-num-sm {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 32px;
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--ink);
+      opacity: 0.1;
+      padding-top: 6px;
+      grid-column: 1;
+      grid-row: 1 / 10;
     }
     .service-card h3 {
-      font-size: 24px; font-weight: 800;
+      font-size: 24px; font-weight: 400;
       letter-spacing: -0.5px; line-height: 1.2;
       color: var(--ink);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      grid-column: 2;
     }
+    .service-card h3 strong { font-weight: 800; }
+    .service-card h3 .service-h3-sub { font-weight: 400; }
     .service-card p {
-      font-size: 15px;
+      font-size: 18px;
       color: var(--ink-mid);
       line-height: 1.75;
       margin-bottom: 12px;
+      grid-column: 2;
     }
     .service-card p:last-child { margin-bottom: 0; }
+    .service-card .service-quote {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 17px;
+      border-left: 3px solid var(--green);
+      padding-left: 14px;
+      margin-bottom: 20px;
+      grid-column: 2;
+    }
 
     /* ── ABOUT ── */
     .about {
@@ -785,7 +804,7 @@
       section, .media, .commitment { padding: 80px 40px; }
       .logos-strip { padding: 32px 40px; }
       .quotes-strip { padding: 48px 40px; }
-      .services-bento { grid-template-columns: 1fr 1fr; }
+      .service-card { column-gap: 32px; padding: 40px 0; }
       .about { gap: 40px; }
       .videos-grid { grid-template-columns: 1fr; }
       footer { padding: 32px 40px; }
@@ -816,15 +835,19 @@
       .hero-eyebrow { display: none; }
       .btn-primary { padding: 10px 18px; font-size: 13px; }
       section, .media, .commitment { padding: 70px 24px; }
-      .hero { padding: 100px 24px 60px; flex-direction: column; align-items: flex-start; min-height: unset; }
-      .hero-visual { width: 100%; margin-left: 0; margin-top: 32px; padding: 0; }
-      .hero-photo { height: 420px; border-radius: 20px; }
-      .hero-credential { font-size: 9px; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .hero { padding: 88px 24px 0; flex-direction: column; align-items: flex-start; min-height: 100svh; overflow: hidden; position: relative; }
+      .hero h1 { font-size: 26px; letter-spacing: -0.8px; margin-bottom: 16px; line-height: 1.15; }
+      .hero p { font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
+      .hero-closer { font-size: 16px; margin-bottom: 24px; }
+      .hero-visual { position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%); width: 88%; padding: 0; }
+      .hero-photo { height: 320px; border-radius: 20px 20px 0 0; }
+      .hero-credential { display: none; }
       .logos-strip { padding: 36px 24px; }
       .logos-row { gap: 28px 36px; }
       .quotes-strip { padding: 48px 24px; }
       .quotes-grid { grid-template-columns: 1fr; }
-      .services-bento { grid-template-columns: 1fr; }
+      .service-card { grid-template-columns: 48px 1fr; column-gap: 24px; padding: 36px 0; }
+      .service-num-sm { font-size: 36px; }
       .about { grid-template-columns: 1fr; }
       .about-img-wrap { max-height: 384px; }
       .media-header { grid-template-columns: 1fr; gap: 20px; }
@@ -838,7 +861,7 @@
       .hero-credential { font-size: 8px; letter-spacing: 0.6px; }
       nav { padding: 14px 16px; }
       section, .media, .commitment { padding: 60px 16px; }
-      .hero { padding: 90px 16px 50px; }
+      .hero { padding: 90px 16px 0; }
     }
   </style>
 </head>
@@ -893,6 +916,8 @@
     <img class="logo-img logo-bessemer" src="https://www.bvp.com/assets/uploads/2023/08/copy-bessemer-logo.svg" alt="Bessemer">
     <img class="logo-img" src="https://cdn.prod.website-files.com/66d894ac929236a04d136c23/66d894ac929236a04d136c81_logof2.svg" alt="F2">
     <img class="logo-img" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Venrock_Logo.png" alt="Venrock">
+  </div>
+  <div class="logos-row">
     <img class="logo-img logo-usvp" src="https://www.usvp.com/wp-content/uploads/2017/02/usvp-logo.png" alt="USVP">
     <img class="logo-img logo-vertex" src="https://www.vertexventures.co.il/static/website-logo.a7156a4c.svg" alt="Vertex">
     <img class="logo-img logo-insight" src="https://upload.wikimedia.org/wikipedia/commons/5/56/Insight_Partners_Logo_-_svg.svg" alt="Insight Partners">
@@ -936,21 +961,31 @@
   <div class="services-bento">
     <div class="service-card">
       <div class="service-num-sm">01</div>
-      <h3>"I'm running the company. But something inside me stopped running a while ago."</h3>
-      <p>Burnout, anxiety, decision paralysis, mild depression — these don't announce themselves. They show up as fog, irritability, an inability to trust your own judgment.</p>
-      <p>I work with founders who are still performing on the outside but know something is wrong on the inside.</p>
+      <h3><strong>Founder Burnout</strong> <span class="service-h3-sub">/ When You Can't Think Clearly Anymore</span></h3>
+      <p class="service-quote">"I'm still running the company. But I don't fully trust myself anymore."</p>
+      <p>Burnout, anxiety, decision paralysis, mild depression, and loneliness at the top don't always look like collapse. Often, they show up while the founder is still fundraising, hiring, selling, leading, and carrying everyone else.</p>
+      <p>I work with founders who are still performing on the outside — but feel foggy, reactive, isolated, or unable to trust their own judgment — so they can think clearly again, make better calls, and drive business results.</p>
     </div>
     <div class="service-card">
       <div class="service-num-sm">02</div>
-      <h3>"My co-founder and I built this together. Now we can barely be in the same room."</h3>
-      <p>Co-founder misalignment is one of the most common — and least talked about — reasons companies stall. Different communication styles, unspoken resentment, old baggage, broken trust.</p>
-      <p>I help founding pairs have the conversations they've been avoiding before it costs them the company.</p>
+      <h3><strong>Co-Founder 'Couples' Therapy</strong> <span class="service-h3-sub">/ When You Can't Communicate</span></h3>
+      <p class="service-quote">"We built this company together. Now every real conversation either escalates — or doesn't happen at all."</p>
+      <p>Different communication styles, unspoken resentment, old baggage, broken trust, unclear ownership, and power struggles eventually become business problems.</p>
+      <p>I work with founders to turn unresolved tension into operational decisions: who owns what, who decides what, how conflict is handled, and what each founder needs to change.</p>
     </div>
     <div class="service-card">
       <div class="service-num-sm">03</div>
-      <h3>"The company is scaling. Everything else is lagging behind."</h3>
-      <p>When growth accelerates, the org, the processes, and the people — starting with the founder — need to scale just as fast. Most don't.</p>
-      <p>I help founders and their teams build the psychological and structural capacity to grow without breaking.</p>
+      <h3><strong>Scaling the Company</strong> <span class="service-h3-sub">/ When the Company Grows Faster Than the People, Structure, and Processes</span></h3>
+      <p class="service-quote">"The company is growing. But everything around it is still built for the previous stage."</p>
+      <p>Growth is the goal — now the founders, leadership team, org structure, processes, communication rhythms, and decision-making habits all need to scale with the business.</p>
+      <p>I help founders build the leadership and organizational capacity required for the next stage — without killing speed, ownership, or the culture that got them here.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num-sm">04</div>
+      <h3><strong>Business Stagnation</strong> <span class="service-h3-sub">/ When the Business Should Be Moving — But Isn't</span></h3>
+      <p class="service-quote">"The market is there. The product is strong. The company is funded. So why aren't we growing?"</p>
+      <p>Some companies have real potential: a big market, a differentiated product, strong investors, and enough capital to move. But growth still stalls. Decisions slow down, momentum gets lost, and the same strategic questions keep coming back without resolution.</p>
+      <p>I work with founders to identify where stagnation is being created at the top: how they communicate, make decisions, resolve tension, and operate — or fail to operate — as one leadership body.</p>
     </div>
   </div>
 </section>
