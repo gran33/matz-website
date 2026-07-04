@@ -519,6 +519,9 @@
       margin-bottom: 48px;
     }
     .media-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 10px 24px;
       border-radius: var(--radius-pill);
       font-size: 14px; font-weight: 600;
@@ -528,6 +531,10 @@
       color: var(--ink-mid);
       transition: all .2s;
       font-family: inherit;
+    }
+    .media-tab svg {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
     }
     .media-tab.active {
       background: var(--ink);
@@ -1017,9 +1024,18 @@
   </div>
 
   <div class="media-tabs">
-    <button class="media-tab active" onclick="switchTab(this, 'videos')">▶ Videos</button>
-    <button class="media-tab" onclick="switchTab(this, 'podcast')">🎧 Podcast</button>
-    <button class="media-tab" onclick="switchTab(this, 'publications')">✍️ Publications</button>
+    <button class="media-tab active" onclick="switchTab(this, 'videos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+      Videos
+    </button>
+    <button class="media-tab" onclick="switchTab(this, 'podcast')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a9 9 0 0 1 18 0"></path><path d="M17 19a2 2 0 0 0 2-2v-4a2 2 0 0 0-4 0v4a2 2 0 0 0 2 2Z"></path><path d="M7 19a2 2 0 0 0 2-2v-4a2 2 0 0 0-4 0v4a2 2 0 0 0 2 2Z"></path></svg>
+      Podcast
+    </button>
+    <button class="media-tab" onclick="switchTab(this, 'publications')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="16" y2="17"></line></svg>
+      Publications
+    </button>
   </div>
 
   <!-- VIDEOS PANEL -->
