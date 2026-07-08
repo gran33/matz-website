@@ -747,6 +747,16 @@
       font-weight: 700;
       color: var(--green);
     }
+    .resource-card.coming-soon {
+      cursor: default;
+    }
+    .resource-card.coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .resource-card.coming-soon .resource-link {
+      color: var(--ink-lt);
+    }
 
     .contact {
       background: var(--cream);
@@ -1204,12 +1214,12 @@
     <p class="section-sub">Free, practical, and built from the same work I do with founders and investors.</p>
   </div>
   <div class="resources-grid">
-    <a class="resource-card" href="https://founder-performance-scan.netlify.app" target="_blank" rel="noopener">
+    <div class="resource-card coming-soon">
       <div class="resource-audience">For Founders</div>
       <h3>Founder Performance Scan</h3>
       <p>A free self-assessment that surfaces patterns in how you see reality, move decisions, and scale as a founder.</p>
-      <span class="resource-link">Take the scan →</span>
-    </a>
+      <span class="resource-link">Coming soon</span>
+    </div>
     <a class="resource-card" href="https://matz-founder-guide.netlify.app" target="_blank" rel="noopener">
       <div class="resource-audience">For Founding Teams</div>
       <h3>Founder Alignment Field Guide</h3>
